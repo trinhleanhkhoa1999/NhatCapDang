@@ -1,0 +1,55 @@
+﻿@model Lab5.Models.Domain.Category
+@{
+    ViewData["Title"] = "Detail";
+}
+    <div>
+        <hr />
+        <div class="row">
+            <div class="col-sm-9">
+                <dl class="row">
+                    <dt class="col-sm-3">
+                        @Html.DisplayNameFor(model => model.CategoryId)
+                    </dt>
+                    <dd class="col-sm-9">
+                        @Html.DisplayFor(model => model.CategoryId)
+                    </dd>
+                    <dt class="col-sm-3">
+                        @Html.DisplayNameFor(model => model.CategoryName)
+                    </dt>
+                    <dd class="col-sm-9">
+                        @Html.DisplayFor(model => model.CategoryName)
+                    </dd>
+                </dl>
+            </div>
+        </div>
+        <div class="row">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <td>Id</td>
+                        <td>Product Name</td>
+                        <td>Product Image</td>
+                        <td>Product Quantity</td>
+                        <td>Product Price</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (ViewBag.Category != null)
+                    {
+                        int i = 1;
+                        @foreach (var item in ViewBag.Category)
+                        {
+                            <tr>
+
+                                <td>@(i++)</td>
+                                <td>@item.ProductName</td>
+                                <td><img src="~/images/@item.ProductImage" class="img-thumbnail" width="100px" height="100px" alt="iphone11promax" /></td>
+                                <td>@item.ProductQuantity</td>
+                                <td>@item.ProductPrice</td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>

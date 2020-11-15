@@ -1,0 +1,29 @@
+﻿@using Lab5.Models.Domain
+@{
+    ViewData["Title"] = "Index";
+}
+@model List<Category>
+<h2>Count: @Model.Count</h2>
+<p><a class="btn btn-primary" asp-controller="Category" asp-action="Add">Add</a></p>
+<table class="table">
+    <thead>
+        <tr>
+            <td>Id</td>
+            <td>Product Name</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model)
+        {
+        <tr>
+            <td>@item.CategoryId</td>
+            <td>@item.CategoryName</td>
+            <td>
+                <a class="btn btn-outline-info" asp-controller="Category" asp-action="Edit" asp-route-id="@item.CategoryId">Edit</a>
+                <a class="btn btn-outline-danger" asp-controller="Category" asp-action="Delete" asp-route-id="@item.CategoryId">Delete</a>
+                <a class="btn btn-outline-primary" asp-controller="Category" asp-action="Detail" asp-route-id="@item.CategoryId">Detail</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

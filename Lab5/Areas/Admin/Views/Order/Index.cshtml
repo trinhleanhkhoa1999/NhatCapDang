@@ -1,0 +1,35 @@
+﻿@using Lab5.Models.Domain
+@{
+    ViewData["Title"] = "Order";
+}
+@model List<Order>
+<h2>Count: @Model.Count</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <td>Id</td>
+            <td>CusName</td>
+            <td>Address</td>
+            <td>Email</td>
+            <td>Phone</td>
+            <td>Order date</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.OrderId</td>
+                <td>@item.CusName</td>
+                <td>@item.Address</td>
+                <td>@item.Email</td>
+                <td>@item.Phone</td>
+                <td>@item.OrderDate.ToString("dd/MM/yyyy")</td>
+                <td>
+                    <a class="btn btn-outline-info" asp-controller="Order" asp-action="Detail" asp-route-id="@item.OrderId">Detail</a>
+                    <a class="btn btn-outline-danger" asp-controller="Order" asp-action="Delete" asp-route-id="@item.OrderId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

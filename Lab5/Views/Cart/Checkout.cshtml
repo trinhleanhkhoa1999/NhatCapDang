@@ -1,0 +1,66 @@
+﻿@model Lab5.Models.Domain.Order
+@{
+    ViewData["Title"] = "Checkout";
+}
+<div class="row">
+    <div class="col-lg-6">
+        <form asp-controller="Cart" asp-action="Checkout" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label asp-for="CusName" class="control-label"></label>
+                <input asp-for="CusName" class="form-control" placeholder="Enter your name" />
+                <span asp-validation-for="CusName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address" class="control-label"></label>
+                <input asp-for="Address" class="form-control" placeholder="Enter your address" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" placeholder="Enter email" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Phone" class="control-label"></label>
+                <input asp-for="Phone" class="form-control" placeholder="Enter your phone"  />
+                <span asp-validation-for="Phone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Buy" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+    <div class="col-lg-6">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Tên sản phẩm</th>
+                    <th>Số lượng</th>
+                    <th>Giá tiền</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (ViewBag.cart != null)
+                {
+                    int i = 1;
+                    @foreach (var item in ViewBag.cart)
+                    {
+                        <tr>
+                            <td>@item.Product.ProductName</td>
+                            <td>   @item.Quantity</td>
+                            <td> @(item.Product.ProductPrice * item.Quantity)</td>
+                        </tr>
+
+                    }
+                }
+                <tr>
+                    <td>  Tổng cộng:</td>
+                    <td></td>
+                    <td> @ViewBag.total</td>
+                </tr>
+
+            </tbody>
+        </table>
+
+
+

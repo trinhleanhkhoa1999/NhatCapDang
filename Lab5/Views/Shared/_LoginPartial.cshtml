@@ -1,0 +1,29 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Lab5.Models.Domain
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+
+
+        @if (SignInManager.IsSignedIn(User))
+        {
+            <li class="nav-item">
+                <a class="nav-link " style="color:crimson" asp-controller="Home"
+                   asp-action="Index"
+                   title="Welcome">Welcome @User.Identity.Name!</a>
+            </li>
+            <li class="nav-item">
+                <form class="form-inline" asp-controller="Account"
+                      asp-action="Logout" asp-area="">
+                    <button type="submit" class="nav-link btn btn-info text-info">
+                        Logout
+                    </button>
+                </form>
+            </li>
+        }
+        else
+        {
+            <li><a asp-controller="Account" asp-action="Login"><i class="fa fa-lock"></i> Login</a></li>
+            <li><a asp-controller="Account" asp-action="Register"><i class="fa fa-lock"></i> Register</a></li>
+        }
+  
+
